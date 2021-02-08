@@ -1,0 +1,28 @@
+{
+  "name": "jmvdevelop/nodi",
+  "description": "A template engine to render html tree",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Joseph Maarek",
+      "email": "josephmaarek@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JmvDevelop\\Nodi\\": "src"
+    },
+    "files": [
+      "src/Node/functions.php"
+    ]
+  },
+  "require-dev": {
+    "pestphp/pest": "^1.0",
+    "vimeo/psalm": "^4.4",
+    "spatie/pest-plugin-snapshots": "^1.0"
+  },
+  "require": {
+    "jetbrains/phpstorm-attributes": "^1.0",
+    "laminas/laminas-escaper": "^2.7"
+  }
+}
