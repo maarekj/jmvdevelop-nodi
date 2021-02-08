@@ -370,3 +370,24 @@ function null(): NullNode
 {
     return new NullNode();
 }
+
+/**
+ * @param Node|Node[] ...$nodes
+ * @return FragmentNode
+ */
+function frag(...$nodes): FragmentNode
+{
+    $flattenNode = [];
+
+    foreach ($nodes as $node) {
+        if (is_array($node)) {
+            foreach ($node as $n) {
+                $flattenNode[] = $n;
+            }
+        } else {
+            $flattenNode[] = $node;
+        }
+    }
+
+    return new FragmentNode($flattenNode);
+}

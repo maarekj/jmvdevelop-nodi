@@ -6,6 +6,7 @@ use function JmvDevelop\Nodi\Node\a;
 use function JmvDevelop\Nodi\Node\body;
 use function JmvDevelop\Nodi\Node\br;
 use function JmvDevelop\Nodi\Node\div;
+use function JmvDevelop\Nodi\Node\frag;
 use function JmvDevelop\Nodi\Node\html;
 use function JmvDevelop\Nodi\Node\li;
 use function JmvDevelop\Nodi\Node\nbsp;
@@ -106,6 +107,60 @@ test('nbsp', function () {
     $engine = new NodeEngine();
 
     $node = baseHtml(div(children: [s("1"), nbsp(), s("2")]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test('fragment with varargs', function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div([
+        frag(
+            s("1"),
+            s(" "),
+            s("2"),
+            s(" "),
+            s("3"),
+        ),
+    ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test('fragment with array', function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div([
+        frag([
+            s("1"),
+            s(" "),
+            s("2"),
+            s(" "),
+            s("3"),
+        ]),
+    ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test('fragment with varargs and array', function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div([
+        frag(
+            s("1"),
+            s(" "),
+            [
+                s("2"),
+                s(" "),
+            ],
+            s("3"),
+            s(" "),
+            [
+                s("4"),
+            ],
+        ),
+    ]));
 
     assertMatchesHtmlSnapshot($engine->render($node));
 });
