@@ -355,6 +355,11 @@ function s(string $value): StringNode
     return new StringNode($value);
 }
 
+function nl2br(string $value): Nl2BrNode
+{
+    return new Nl2BrNode($value);
+}
+
 function raw(string $value): RawNode
 {
     return new RawNode($value);

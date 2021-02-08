@@ -2,18 +2,21 @@
 
 use JmvDevelop\Nodi\Node\Node;
 use JmvDevelop\Nodi\NodeEngine;
-use function JmvDevelop\Nodi\Node\a;
-use function JmvDevelop\Nodi\Node\body;
-use function JmvDevelop\Nodi\Node\br;
-use function JmvDevelop\Nodi\Node\div;
-use function JmvDevelop\Nodi\Node\frag;
-use function JmvDevelop\Nodi\Node\html;
-use function JmvDevelop\Nodi\Node\li;
-use function JmvDevelop\Nodi\Node\nbsp;
-use function JmvDevelop\Nodi\Node\raw;
-use function JmvDevelop\Nodi\Node\ul;
-use function JmvDevelop\Nodi\Node\s;
-use function JmvDevelop\Nodi\Node\p;
+use function JmvDevelop\Nodi\Node\{
+    a,
+    body,
+    br,
+    div,
+    frag,
+    html,
+    li,
+    nbsp,
+    raw,
+    ul,
+    s,
+    p,
+    nl2br
+};
 use function Spatie\Snapshots\assertMatchesHtmlSnapshot;
 
 function baseHtml(Node $node): Node
@@ -160,6 +163,26 @@ test('fragment with varargs and array', function () {
                 s("4"),
             ],
         ),
+    ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test('nl2br with simple text', function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div([
+        nl2br("Hello\nWorld"),
+    ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test('nl2br with html text', function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div([
+        nl2br("<strong>Hello</strong>\n<em>World\nWorld</em>"),
     ]));
 
     assertMatchesHtmlSnapshot($engine->render($node));
