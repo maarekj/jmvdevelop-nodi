@@ -2,7 +2,6 @@
 
 namespace JmvDevelop\Nodi\Node;
 
-use JetBrains\PhpStorm\Pure;
 use JmvDevelop\Nodi\NodeEngine;
 
 class TagNode extends Node
@@ -79,7 +78,7 @@ class TagNode extends Node
     }
 
     /** @return list<Node> */
-    #[Pure] public function getChildren(): array
+    public function getChildren(): array
     {
         return array_values($this->children);
     }
