@@ -110,6 +110,7 @@ $tags = [
     ['name' => 'span', 'autoClose' => false],
     ['name' => 'strong', 'autoClose' => false],
     ['name' => 'style', 'autoClose' => false],
+    ['name' => 'sup', 'autoClose' => false],
     ['name' => 'table', 'autoClose' => false],
     ['name' => 'tbody', 'autoClose' => false],
     ['name' => 'td', 'autoClose' => false],
