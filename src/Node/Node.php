@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\Nodi\Node;
 
 use JmvDevelop\Nodi\NodeEngine;

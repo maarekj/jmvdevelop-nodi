@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace JmvDevelop\Nodi\Node;
 
@@ -9,16 +10,16 @@ class HtmlNode extends TagNode
 {
     /**
      * @param array<string, string> $attributes
-     * @param Node[] $children
+     * @param Node[]                $children
      */
     public function __construct(array $attributes = [], array $children = [])
     {
-        parent::__construct("html", $attributes, $children, false);
+        parent::__construct('html', $attributes, $children, false);
     }
 
     public function stream(NodeEngine $engine, $out): void
     {
-        fprintf($out, "<!doctype html>\n");
+        \fprintf($out, "<!doctype html>\n");
         parent::stream($engine, $out);
     }
 }

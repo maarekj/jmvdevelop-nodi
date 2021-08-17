@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\Nodi\Node;
 
 use JmvDevelop\Nodi\NodeEngine;
@@ -12,7 +14,7 @@ class FragmentNode extends Node
     /** @param Node[] $nodes */
     public function __construct(array $nodes)
     {
-        $this->nodes = array_values($nodes);
+        $this->nodes = \array_values($nodes);
     }
 
     /** @return list<Node> */

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\Nodi;
 
 use JmvDevelop\Nodi\Node\Node;
@@ -14,22 +16,21 @@ class NodeEngine
     }
 
     /**
-     * @param Node $node
      * @param resource $out
      */
-    public function stream(Node $node, $out = STDOUT): void
+    public function stream(Node $node, $out = \STDOUT): void
     {
         $node->stream($this, $out);
     }
 
     public function render(Node $node): string
     {
-        $out = fopen("php://memory", "w+");
+        $out = \fopen('php://memory', 'w+');
         $this->stream($node, $out);
 
-        rewind($out);
-        $return = stream_get_contents($out);
-        fclose($out);
+        \rewind($out);
+        $return = \stream_get_contents($out);
+        \fclose($out);
 
         return $return;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\Nodi\Node;
 
 use JmvDevelop\Nodi\NodeEngine;
@@ -8,36 +10,36 @@ class TagNode extends Node
 {
     /**
      * @param array<string, string> $attributes
-     * @param Node[] $children
+     * @param Node[]                $children
      */
     public function __construct(
         private string $tagName,
         private array $attributes = [],
         private array $children = [],
         private bool $autoClose = false,
-    )
-    {
+    ) {
     }
 
     public function stream(NodeEngine $engine, $out): void
     {
-        fprintf($out, "<%s ", $this->tagName);
+        \fprintf($out, '<%s ', $this->tagName);
         foreach ($this->attributes as $key => $value) {
             $escapedValue = $engine->getEscaper()->htmlAttr($value);
-            fprintf($out, '%s="%s" ', $key, $escapedValue);
+            \fprintf($out, '%s="%s" ', $key, $escapedValue);
         }
 
-        if ($this->autoClose === true) {
-            fprintf($out, "/>");
+        if (true === $this->autoClose) {
+            \fprintf($out, '/>');
+
             return;
         }
-        fprintf($out, ">");
+        \fprintf($out, '>');
 
         foreach ($this->getChildren() as $child) {
             $engine->stream($child, $out);
         }
 
-        fprintf($out, "</%s>", $this->getTagName());
+        \fprintf($out, '</%s>', $this->getTagName());
     }
 
     public function getTagName(): string
@@ -53,6 +55,7 @@ class TagNode extends Node
     public function attr(string $key, string $value): self
     {
         $this->attributes[$key] = $value;
+
         return $this;
     }
 
@@ -64,22 +67,25 @@ class TagNode extends Node
     public function child(Node $child): self
     {
         $this->children = [$child];
+
         return $this;
     }
 
     /**
      * @param Node[] $children
+     *
      * @return $this
      */
     public function children(array $children): self
     {
         $this->children = $children;
+
         return $this;
     }
 
     /** @return list<Node> */
     public function getChildren(): array
     {
-        return array_values($this->children);
+        return \array_values($this->children);
     }
 }

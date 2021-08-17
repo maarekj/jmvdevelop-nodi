@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\Nodi;
 
 final class Escaper
@@ -8,7 +10,7 @@ final class Escaper
 
     public function __construct()
     {
-        $this->laminaEscaper = new \Laminas\Escaper\Escaper("utf-8");
+        $this->laminaEscaper = new \Laminas\Escaper\Escaper('utf-8');
     }
 
     public function html(string $string): string
