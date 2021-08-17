@@ -75,6 +75,7 @@ $tags = [
     ['name' => 'embed', 'autoClose' => false],
     ['name' => 'figcaption', 'autoClose' => false],
     ['name' => 'figure', 'autoClose' => false],
+    ['name' => 'footer', 'autoClose' => false],
     ['name' => 'form', 'autoClose' => false],
     ['name' => 'h1', 'autoClose' => false],
     ['name' => 'h2', 'autoClose' => false],
@@ -82,6 +83,7 @@ $tags = [
     ['name' => 'h4', 'autoClose' => false],
     ['name' => 'h5', 'autoClose' => false],
     ['name' => 'h6', 'autoClose' => false],
+    ['name' => 'head', 'autoClose' => false],
     ['name' => 'header', 'autoClose' => false],
     ['name' => 'hr', 'autoClose' => true],
     ['name' => 'i', 'autoClose' => false],
@@ -119,7 +121,6 @@ $tags = [
     ['name' => 'tr', 'autoClose' => false],
     ['name' => 'ul', 'autoClose' => false],
     ['name' => 'video', 'autoClose' => false],
-    ['name' => 'head', 'autoClose' => false],
 ];
 
 $generateAttrsToParams = function () use ($attrs): void {
