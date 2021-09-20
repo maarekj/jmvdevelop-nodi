@@ -2,21 +2,7 @@
 
 use JmvDevelop\Nodi\Node\Node;
 use JmvDevelop\Nodi\NodeEngine;
-use function JmvDevelop\Nodi\Node\{
-    a,
-    body,
-    br,
-    div,
-    frag,
-    html,
-    li,
-    nbsp,
-    raw,
-    ul,
-    s,
-    p,
-    nl2br
-};
+use function JmvDevelop\Nodi\Node\{a, body, br, div, frag, html, lazy, li, main, nbsp, raw, ul, s, p, nl2br, wrap};
 use function Spatie\Snapshots\assertMatchesHtmlSnapshot;
 
 function baseHtml(Node $node): Node
@@ -184,6 +170,34 @@ test('nl2br with html text', function () {
     $node = baseHtml(div([
         nl2br("<strong>Hello</strong>\n<em>World\nWorld</em>"),
     ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test("lazy", function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(div(class: "class", children: [
+        lazy(fn() => div(s("Lazy with function"))),
+        lazy(fn() => lazy(fn() => lazy(fn() => div(s("Lazy with function nested"))))),
+        lazy(div(s("lazy with one node"))),
+        lazy([
+            div(class: "node-1", children: lazy(fn() => s("lazy with two nodes"))),
+            div(class: "node-2", children: lazy(fn() => s("lazy with two nodes"))),
+        ]),
+    ]));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test("wrap", function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(frag(
+        div(class: "wrap with null", children: [wrap(null, div(s("div")))]),
+        div(class: "wrap with main around", children: wrap(fn(Node $super): Node => main(class: "wrapper", children: $super), div(s("div")))),
+        div(class: "wrap with main before", children: wrap(fn(Node $super): Node => frag(main(class: "before"), $super), div(s("div")))),
+    ));
 
     assertMatchesHtmlSnapshot($engine->render($node));
 });

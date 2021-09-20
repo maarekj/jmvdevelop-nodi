@@ -7,6 +7,7 @@ $attrs = [
     'async' => 'async',
     'autocomplete' => 'autocomplete',
     'autoplay' => 'autoplay',
+    'charset' => 'charset',
     'checked' => 'checked',
     'cite' => 'cite',
     'class' => 'class',
@@ -312,6 +313,24 @@ function frag(...$nodes): FragmentNode
     }
 
     return new FragmentNode($flattenNode);
-}';
+}
+
+/**
+ * @param Node|Node[]|callable():Node $nodes
+ */
+function lazy(callable|array|Node $nodes): LazyNode
+{
+    return new LazyNode(nodes: $nodes);
+}
+
+/**
+ * @param ?callable(Node):Node $wrapper
+ * @param Node $node
+ */
+function wrap(?callable $wrapper, Node $node): WrapNode
+{
+    return new WrapNode(wrapper: $wrapper, node: $node);
+}
+';
 
 echo "\n";
