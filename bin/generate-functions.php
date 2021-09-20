@@ -32,6 +32,7 @@ $attrs = [
     'preload' => 'preload',
     'property' => 'property',
     'rel' => 'rel',
+    'required' => 'required',
     'reversed' => 'reversed',
     'rows' => 'rows',
     'rowspan' => 'rowspan',
