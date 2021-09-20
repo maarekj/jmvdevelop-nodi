@@ -7,6 +7,7 @@ $attrs = [
     'async' => 'async',
     'autocomplete' => 'autocomplete',
     'autoplay' => 'autoplay',
+    'checked' => 'checked',
     'cite' => 'cite',
     'class' => 'class',
     'colspan' => 'colspan',
