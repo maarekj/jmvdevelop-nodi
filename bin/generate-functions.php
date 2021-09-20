@@ -29,6 +29,7 @@ $attrs = [
     'name' => 'name',
     'novalidate' => 'novalidate',
     'pattern' => 'pattern',
+    'placeholder' => 'placeholder',
     'preload' => 'preload',
     'property' => 'property',
     'rel' => 'rel',
