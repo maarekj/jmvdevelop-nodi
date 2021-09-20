@@ -105,6 +105,7 @@ $tags = [
     ['name' => 'pre', 'autoClose' => false],
     ['name' => 'progress', 'autoClose' => false],
     ['name' => 'script', 'autoClose' => false],
+    ['name' => 'section', 'autoClose' => false],
     ['name' => 'select', 'autoClose' => false],
     ['name' => 'small', 'autoClose' => false],
     ['name' => 'span', 'autoClose' => false],
