@@ -20,6 +20,6 @@ class StringNode extends Node
 
     public function stream(NodeEngine $engine, $out): void
     {
-        \fprintf($out, $engine->getEscaper()->html($this->value));
+        \fwrite($out, $engine->getEscaper()->html($this->value));
     }
 }

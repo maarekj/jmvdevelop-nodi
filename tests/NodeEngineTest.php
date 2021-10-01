@@ -201,3 +201,23 @@ test("wrap", function () {
 
     assertMatchesHtmlSnapshot($engine->render($node));
 });
+
+test("[prevent regression] - raw node with %s and other % in content", function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(frag(
+        raw(value: "content %s test %d %"),
+    ));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});
+
+test("[prevent regression] - string node with %s and other % in string", function () {
+    $engine = new NodeEngine();
+
+    $node = baseHtml(frag(
+        s("content %s test %d %"),
+    ));
+
+    assertMatchesHtmlSnapshot($engine->render($node));
+});

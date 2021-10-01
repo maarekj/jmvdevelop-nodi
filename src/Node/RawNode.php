@@ -20,6 +20,6 @@ class RawNode extends Node
 
     public function stream(NodeEngine $engine, $out): void
     {
-        \fprintf($out, $this->value);
+        \fwrite($out, $this->value);
     }
 }

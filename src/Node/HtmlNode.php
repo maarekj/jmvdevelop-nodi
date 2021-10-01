@@ -19,7 +19,7 @@ class HtmlNode extends TagNode
 
     public function stream(NodeEngine $engine, $out): void
     {
-        \fprintf($out, "<!doctype html>\n");
+        \fwrite($out, "<!doctype html>\n");
         parent::stream($engine, $out);
     }
 }

@@ -20,6 +20,6 @@ class Nl2BrNode extends Node
 
     public function stream(NodeEngine $engine, $out): void
     {
-        \fprintf($out, \nl2br($engine->getEscaper()->html($this->value)));
+        \fwrite($out, \nl2br($engine->getEscaper()->html($this->value)));
     }
 }

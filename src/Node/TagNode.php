@@ -29,11 +29,11 @@ class TagNode extends Node
         }
 
         if (true === $this->autoClose) {
-            \fprintf($out, '/>');
+            \fwrite($out, '/>');
 
             return;
         }
-        \fprintf($out, '>');
+        \fwrite($out, '>');
 
         foreach ($this->getChildren() as $child) {
             $engine->stream($child, $out);
