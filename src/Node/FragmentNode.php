@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace JmvDevelop\Nodi\Node;
 
-use JmvDevelop\Nodi\NodeEngine;
-
-class FragmentNode extends Node
+final class FragmentNode extends Node
 {
     /** @var list<Node> */
-    private array $nodes;
+    public array $nodes;
 
     /** @param Node[] $nodes */
     public function __construct(array $nodes)
@@ -17,16 +15,8 @@ class FragmentNode extends Node
         $this->nodes = \array_values($nodes);
     }
 
-    /** @return list<Node> */
-    public function getNodes(): array
+    public function getServiceKey(): string
     {
-        return $this->nodes;
-    }
-
-    public function stream(NodeEngine $engine, $out): void
-    {
-        foreach ($this->nodes as $node) {
-            $engine->stream($node, $out);
-        }
+        return FragmentRenderer::class;
     }
 }

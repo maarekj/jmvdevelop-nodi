@@ -271,12 +271,14 @@ function attrs(
 }
 
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function tag(
     string $tagName,
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -384,16 +386,18 @@ function tag(
         width: $width,
         extra: $extra,
     );
-    $children = \is_array($children) ? $children : [$children];
+    $children = null === $children ? frag($_) : frag($children);
 
     return new TagNode(tagName: $tagName, attributes: $attrs, children: $children, autoClose: $autoClose);
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function a(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -451,6 +455,7 @@ function a(
     return tag(
         tagName: 'a',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -506,11 +511,13 @@ function a(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function abbr(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -568,6 +575,7 @@ function abbr(
     return tag(
         tagName: 'abbr',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -623,11 +631,13 @@ function abbr(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function acronym(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -685,6 +695,7 @@ function acronym(
     return tag(
         tagName: 'acronym',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -740,11 +751,13 @@ function acronym(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function address(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -802,6 +815,7 @@ function address(
     return tag(
         tagName: 'address',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -857,11 +871,13 @@ function address(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function area(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -919,6 +935,7 @@ function area(
     return tag(
         tagName: 'area',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -974,11 +991,13 @@ function area(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function article(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1036,6 +1055,7 @@ function article(
     return tag(
         tagName: 'article',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1091,11 +1111,13 @@ function article(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function aside(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1153,6 +1175,7 @@ function aside(
     return tag(
         tagName: 'aside',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1208,11 +1231,13 @@ function aside(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function audio(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1270,6 +1295,7 @@ function audio(
     return tag(
         tagName: 'audio',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1325,11 +1351,13 @@ function audio(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function blockquote(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1387,6 +1415,7 @@ function blockquote(
     return tag(
         tagName: 'blockquote',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1442,11 +1471,13 @@ function blockquote(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function body(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1504,6 +1535,7 @@ function body(
     return tag(
         tagName: 'body',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1559,11 +1591,13 @@ function body(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function br(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = true,
     ?string $accept = null,
     ?string $action = null,
@@ -1621,6 +1655,7 @@ function br(
     return tag(
         tagName: 'br',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1676,11 +1711,13 @@ function br(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function cite(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1738,6 +1775,7 @@ function cite(
     return tag(
         tagName: 'cite',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1793,11 +1831,13 @@ function cite(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function code(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1855,6 +1895,7 @@ function code(
     return tag(
         tagName: 'code',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -1910,11 +1951,13 @@ function code(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function col(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -1972,6 +2015,7 @@ function col(
     return tag(
         tagName: 'col',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2027,11 +2071,13 @@ function col(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function colgroup(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2089,6 +2135,7 @@ function colgroup(
     return tag(
         tagName: 'colgroup',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2144,11 +2191,13 @@ function colgroup(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function dd(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2206,6 +2255,7 @@ function dd(
     return tag(
         tagName: 'dd',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2261,11 +2311,13 @@ function dd(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function del(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2323,6 +2375,7 @@ function del(
     return tag(
         tagName: 'del',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2378,11 +2431,13 @@ function del(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function dir(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2440,6 +2495,7 @@ function dir(
     return tag(
         tagName: 'dir',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2495,11 +2551,13 @@ function dir(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function div(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2557,6 +2615,7 @@ function div(
     return tag(
         tagName: 'div',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2612,11 +2671,13 @@ function div(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function dl(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2674,6 +2735,7 @@ function dl(
     return tag(
         tagName: 'dl',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2729,11 +2791,13 @@ function dl(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function dt(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2791,6 +2855,7 @@ function dt(
     return tag(
         tagName: 'dt',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2846,11 +2911,13 @@ function dt(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function em(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -2908,6 +2975,7 @@ function em(
     return tag(
         tagName: 'em',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -2963,11 +3031,13 @@ function em(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function embed(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3025,6 +3095,7 @@ function embed(
     return tag(
         tagName: 'embed',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3080,11 +3151,13 @@ function embed(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function figcaption(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3142,6 +3215,7 @@ function figcaption(
     return tag(
         tagName: 'figcaption',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3197,11 +3271,13 @@ function figcaption(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function figure(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3259,6 +3335,7 @@ function figure(
     return tag(
         tagName: 'figure',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3314,11 +3391,13 @@ function figure(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function footer(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3376,6 +3455,7 @@ function footer(
     return tag(
         tagName: 'footer',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3431,11 +3511,13 @@ function footer(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function form(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3493,6 +3575,7 @@ function form(
     return tag(
         tagName: 'form',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3548,11 +3631,13 @@ function form(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h1(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3610,6 +3695,7 @@ function h1(
     return tag(
         tagName: 'h1',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3665,11 +3751,13 @@ function h1(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h2(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3727,6 +3815,7 @@ function h2(
     return tag(
         tagName: 'h2',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3782,11 +3871,13 @@ function h2(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h3(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3844,6 +3935,7 @@ function h3(
     return tag(
         tagName: 'h3',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -3899,11 +3991,13 @@ function h3(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h4(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -3961,6 +4055,7 @@ function h4(
     return tag(
         tagName: 'h4',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4016,11 +4111,13 @@ function h4(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h5(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4078,6 +4175,7 @@ function h5(
     return tag(
         tagName: 'h5',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4133,11 +4231,13 @@ function h5(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function h6(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4195,6 +4295,7 @@ function h6(
     return tag(
         tagName: 'h6',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4250,11 +4351,13 @@ function h6(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function head(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4312,6 +4415,7 @@ function head(
     return tag(
         tagName: 'head',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4367,11 +4471,13 @@ function head(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function header(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4429,6 +4535,7 @@ function header(
     return tag(
         tagName: 'header',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4484,11 +4591,13 @@ function header(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function hr(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = true,
     ?string $accept = null,
     ?string $action = null,
@@ -4546,6 +4655,7 @@ function hr(
     return tag(
         tagName: 'hr',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4601,11 +4711,13 @@ function hr(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function i(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4663,6 +4775,7 @@ function i(
     return tag(
         tagName: 'i',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4718,11 +4831,13 @@ function i(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function iframe(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4780,6 +4895,7 @@ function iframe(
     return tag(
         tagName: 'iframe',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4835,11 +4951,13 @@ function iframe(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function img(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -4897,6 +5015,7 @@ function img(
     return tag(
         tagName: 'img',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -4952,11 +5071,13 @@ function img(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function input(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5014,6 +5135,7 @@ function input(
     return tag(
         tagName: 'input',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5069,11 +5191,13 @@ function input(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function ins(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5131,6 +5255,7 @@ function ins(
     return tag(
         tagName: 'ins',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5186,11 +5311,13 @@ function ins(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function label(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5248,6 +5375,7 @@ function label(
     return tag(
         tagName: 'label',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5303,11 +5431,13 @@ function label(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function legend(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5365,6 +5495,7 @@ function legend(
     return tag(
         tagName: 'legend',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5420,11 +5551,13 @@ function legend(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function li(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5482,6 +5615,7 @@ function li(
     return tag(
         tagName: 'li',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5537,11 +5671,13 @@ function li(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function link(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5599,6 +5735,7 @@ function link(
     return tag(
         tagName: 'link',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5654,11 +5791,13 @@ function link(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function main(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5716,6 +5855,7 @@ function main(
     return tag(
         tagName: 'main',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5771,11 +5911,13 @@ function main(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function meta(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5833,6 +5975,7 @@ function meta(
     return tag(
         tagName: 'meta',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -5888,11 +6031,13 @@ function meta(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function nav(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -5950,6 +6095,7 @@ function nav(
     return tag(
         tagName: 'nav',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6005,11 +6151,13 @@ function nav(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function ol(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6067,6 +6215,7 @@ function ol(
     return tag(
         tagName: 'ol',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6122,11 +6271,13 @@ function ol(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function option(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6184,6 +6335,7 @@ function option(
     return tag(
         tagName: 'option',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6239,11 +6391,13 @@ function option(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function p(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6301,6 +6455,7 @@ function p(
     return tag(
         tagName: 'p',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6356,11 +6511,13 @@ function p(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function picture(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6418,6 +6575,7 @@ function picture(
     return tag(
         tagName: 'picture',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6473,11 +6631,13 @@ function picture(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function pre(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6535,6 +6695,7 @@ function pre(
     return tag(
         tagName: 'pre',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6590,11 +6751,13 @@ function pre(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function progress(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6652,6 +6815,7 @@ function progress(
     return tag(
         tagName: 'progress',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6707,11 +6871,13 @@ function progress(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function script(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6769,6 +6935,7 @@ function script(
     return tag(
         tagName: 'script',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6824,11 +6991,13 @@ function script(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function section(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -6886,6 +7055,7 @@ function section(
     return tag(
         tagName: 'section',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -6941,11 +7111,13 @@ function section(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function select(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7003,6 +7175,7 @@ function select(
     return tag(
         tagName: 'select',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7058,11 +7231,13 @@ function select(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function small(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7120,6 +7295,7 @@ function small(
     return tag(
         tagName: 'small',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7175,11 +7351,13 @@ function small(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function span(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7237,6 +7415,7 @@ function span(
     return tag(
         tagName: 'span',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7292,11 +7471,13 @@ function span(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function strong(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7354,6 +7535,7 @@ function strong(
     return tag(
         tagName: 'strong',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7409,11 +7591,13 @@ function strong(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function style(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7471,6 +7655,7 @@ function style(
     return tag(
         tagName: 'style',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7526,11 +7711,13 @@ function style(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function sup(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7588,6 +7775,7 @@ function sup(
     return tag(
         tagName: 'sup',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7643,11 +7831,13 @@ function sup(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function table(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7705,6 +7895,7 @@ function table(
     return tag(
         tagName: 'table',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7760,11 +7951,13 @@ function table(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function tbody(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7822,6 +8015,7 @@ function tbody(
     return tag(
         tagName: 'tbody',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7877,11 +8071,13 @@ function tbody(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function td(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -7939,6 +8135,7 @@ function td(
     return tag(
         tagName: 'td',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -7994,11 +8191,13 @@ function td(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function template(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8056,6 +8255,7 @@ function template(
     return tag(
         tagName: 'template',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8111,11 +8311,13 @@ function template(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function textarea(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8173,6 +8375,7 @@ function textarea(
     return tag(
         tagName: 'textarea',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8228,11 +8431,13 @@ function textarea(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function tfoot(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8290,6 +8495,7 @@ function tfoot(
     return tag(
         tagName: 'tfoot',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8345,11 +8551,13 @@ function tfoot(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function th(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8407,6 +8615,7 @@ function th(
     return tag(
         tagName: 'th',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8462,11 +8671,13 @@ function th(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function thead(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8524,6 +8735,7 @@ function thead(
     return tag(
         tagName: 'thead',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8579,11 +8791,13 @@ function thead(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function tr(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8641,6 +8855,7 @@ function tr(
     return tag(
         tagName: 'tr',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8696,11 +8911,13 @@ function tr(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function ul(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8758,6 +8975,7 @@ function ul(
     return tag(
         tagName: 'ul',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8813,11 +9031,13 @@ function ul(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function video(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     bool $autoClose = false,
     ?string $accept = null,
     ?string $action = null,
@@ -8875,6 +9095,7 @@ function video(
     return tag(
         tagName: 'video',
         autoClose: $autoClose,
+        _: $_,
         children: $children,
         extra: $extra,
         accept: $accept,
@@ -8930,11 +9151,13 @@ function video(
     );
 }
 /**
- * @param Node|Node[]           $children
- * @param array<string, string> $extra
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node>   $children
+ * @param array<string, string>                     $extra
  */
 function html(
-    array|Node $children = [],
+    array|string|Node $_ = [],
+    array|string|Node $children = null,
     ?string $accept = null,
     ?string $action = null,
     ?string $alt = null,
@@ -9041,13 +9264,10 @@ function html(
         width: $width,
         extra: $extra,
     );
-    $children = \is_array($children) ? $children : [$children];
+    $children = null === $children ? frag($_) : frag($children);
 
     return new HtmlNode(attributes: $attrs, children: $children);
 }
-/**
- * @param Node[] $children
- */
 function title(string $title): TagNode
 {
     return new TagNode(tagName: 'title', attributes: [], children: [s($title)], autoClose: false);
@@ -9079,7 +9299,7 @@ function null(): NullNode
 }
 
 /**
- * @param Node|Node[] ...$nodes
+ * @param string|Node|array<array-key, Node|string> ...$nodes
  */
 function frag(...$nodes): FragmentNode
 {
@@ -9088,8 +9308,14 @@ function frag(...$nodes): FragmentNode
     foreach ($nodes as $node) {
         if (\is_array($node)) {
             foreach ($node as $n) {
-                $flattenNode[] = $n;
+                if (\is_string($n)) {
+                    $flattenNode[] = s($n);
+                } else {
+                    $flattenNode[] = $n;
+                }
             }
+        } elseif (\is_string($node)) {
+            $flattenNode[] = s($node);
         } else {
             $flattenNode[] = $node;
         }

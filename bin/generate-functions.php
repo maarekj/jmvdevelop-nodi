@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 $attrs = [
@@ -170,10 +171,11 @@ function attrs(
 $generateTagFunction = function () use ($attrs, $generateAttrsToParams) {
     echo '
 /**
- * @param Node|Node[] $children
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node> $children
  * @param array<string, string> $extra
  */
-function tag(string $tagName, array|Node $children = [], bool $autoClose = false,
+function tag(string $tagName, array|string|Node $_ = [], array|string|Node $children = null, bool $autoClose = false,
     ';
 
     $generateAttrsToParams();
@@ -190,7 +192,7 @@ function tag(string $tagName, array|Node $children = [], bool $autoClose = false
     echo "\n";
     echo '    );';
     echo "\n";
-    echo '    $children = is_array($children) ? $children : [$children];';
+    echo '    $children = $children === null ? frag($_) : frag($children);';
     echo "\n";
     echo "\n";
     echo '    return new TagNode(tagName: $tagName, attributes: $attrs, children: $children, autoClose: $autoClose);';
@@ -202,15 +204,16 @@ $generateTagsFunctions = function () use ($attrs, $generateAttrsToParams, $tags)
     foreach ($tags as $tag) {
         echo '
 /**
- * @param Node|Node[] $children
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node> $children
  * @param array<string, string> $extra
  */
 ';
-        echo 'function ' . $tag['name'] . '(array|Node $children = [], bool $autoClose = ' . ($tag['autoClose'] === true ? 'true' : 'false') . ', ';
+        echo 'function ' . $tag['name'] . '(array|string|Node $_ = [], array|string|Node $children = null, bool $autoClose = ' . ($tag['autoClose'] === true ? 'true' : 'false') . ', ';
         $generateAttrsToParams();
         echo 'array $extra = []): TagNode {';
         echo "\n";
-        echo '    return tag(tagName: "' . $tag['name'] . '", autoClose: $autoClose, children: $children, extra: $extra, ';
+        echo '    return tag(tagName: "' . $tag['name'] . '", autoClose: $autoClose, _: $_, children: $children, extra: $extra, ';
         foreach ($attrs as $variableName) {
             echo '        ' . $variableName . ': $' . $variableName . ',';
             echo "\n";
@@ -224,11 +227,12 @@ $generateTagsFunctions = function () use ($attrs, $generateAttrsToParams, $tags)
 $generateHtmlFunction = function () use ($attrs, $generateAttrsToParams): void {
     echo '
 /**
- * @param Node|Node[] $children
+ * @param string|Node|array<array-key, Node|string> $_
+ * @param null|string|Node|array<array-key, Node> $children
  * @param array<string, string> $extra
  */
 ';
-    echo 'function html(array|Node $children = [], ';
+    echo 'function html(array|string|Node $_ = [], array|string|Node $children = null, ';
     $generateAttrsToParams();
 
     echo 'array $extra = []): HtmlNode {';
@@ -242,7 +246,7 @@ $generateHtmlFunction = function () use ($attrs, $generateAttrsToParams): void {
     echo "\n";
     echo '    );';
     echo "\n";
-    echo '    $children = is_array($children) ? $children : [$children];';
+    echo '    $children = $children === null ? frag($_) : frag($children);';
     echo "\n";
     echo "\n";
     echo '    return new HtmlNode(attributes: $attrs, children: $children);';
@@ -262,9 +266,6 @@ $generateTagsFunctions();
 $generateHtmlFunction();
 
 echo '
-/**
- * @param Node[] $children
- */
 function title(string $title): TagNode
 {
     return new TagNode(tagName: \'title\', attributes: [], children: [s($title)], autoClose: false);
@@ -296,7 +297,7 @@ function null(): NullNode
 }
 
 /**
- * @param Node|Node[] ...$nodes
+ * @param string|Node|array<array-key, Node|string> ...$nodes
  */
 function frag(...$nodes): FragmentNode
 {
@@ -305,8 +306,14 @@ function frag(...$nodes): FragmentNode
     foreach ($nodes as $node) {
         if (\is_array($node)) {
             foreach ($node as $n) {
-                $flattenNode[] = $n;
+                if (\is_string($n)) {
+                    $flattenNode[] = s($n);
+                } else {
+                    $flattenNode[] = $n;
+                }
             }
+        } elseif (\is_string($node)) { 
+            $flattenNode[] = s($node);
         } else {
             $flattenNode[] = $node;
         }

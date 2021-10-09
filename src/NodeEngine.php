@@ -10,7 +10,7 @@ class NodeEngine
 {
     private Escaper $escaper;
 
-    public function __construct()
+    public function __construct(private RendererInterface $renderer)
     {
         $this->escaper = new Escaper();
     }
@@ -20,7 +20,7 @@ class NodeEngine
      */
     public function stream(Node $node, $out = \STDOUT): void
     {
-        $node->stream($this, $out);
+        $this->renderer->stream($this, $node, $out);
     }
 
     public function render(Node $node): string
