@@ -4,43 +4,24 @@ declare(strict_types=1);
 
 namespace JmvDevelop\Nodi;
 
-use JmvDevelop\Nodi\Node\FragmentNode;
 use JmvDevelop\Nodi\Node\FragmentRenderer;
-use JmvDevelop\Nodi\Node\HtmlNode;
 use JmvDevelop\Nodi\Node\HtmlRenderer;
-use JmvDevelop\Nodi\Node\LazyNode;
 use JmvDevelop\Nodi\Node\LazyRenderer;
-use JmvDevelop\Nodi\Node\Nl2BrNode;
 use JmvDevelop\Nodi\Node\Nl2BrRenderer;
 use JmvDevelop\Nodi\Node\Node;
-use JmvDevelop\Nodi\Node\NullNode;
 use JmvDevelop\Nodi\Node\NullRenderer;
-use JmvDevelop\Nodi\Node\RawNode;
 use JmvDevelop\Nodi\Node\RawRenderer;
-use JmvDevelop\Nodi\Node\StringNode;
 use JmvDevelop\Nodi\Node\StringRenderer;
-use JmvDevelop\Nodi\Node\TagNode;
 use JmvDevelop\Nodi\Node\TagRenderer;
-use JmvDevelop\Nodi\Node\WrapNode;
 use JmvDevelop\Nodi\Node\WrapRenderer;
 
 /**
- * @template-implements RendererInterface<FragmentNode|HtmlNode|LazyNode|Nl2BrNode|NullNode|RawNode|StringNode|TagNode|WrapNode>
+ * @template-implements RendererInterface<Node>
  */
 final class DefaultRenderer implements RendererInterface
 {
     /**
-     * @var array{
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\FragmentRenderer": \JmvDevelop\Nodi\Node\FragmentRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\HtmlRenderer": \JmvDevelop\Nodi\Node\HtmlRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\LazyRenderer": \JmvDevelop\Nodi\Node\LazyRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\Nl2BrRenderer": \JmvDevelop\Nodi\Node\Nl2BrRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\NullRenderer": \JmvDevelop\Nodi\Node\NullRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\RawRenderer": \JmvDevelop\Nodi\Node\RawRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\StringRenderer": \JmvDevelop\Nodi\Node\StringRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\TagRenderer": \JmvDevelop\Nodi\Node\TagRenderer,
-     *             "JmvDevelop\\\\Nodi\\\\Node\\\\WrapRenderer": \JmvDevelop\Nodi\Node\WrapRenderer
-     *             }
+     * @var array<string, RendererInterface>
      */
     private array $renderers;
 
@@ -60,8 +41,7 @@ final class DefaultRenderer implements RendererInterface
     }
 
     /**
-     * @param FragmentNode|HtmlNode|LazyNode|Nl2BrNode|NullNode|RawNode|StringNode|TagNode|WrapNode $node
-     * @param resource                                                                              $out
+     * @param resource $out
      *
      * @throws RendererNotFoundException
      */
