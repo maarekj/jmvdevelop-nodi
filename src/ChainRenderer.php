@@ -20,15 +20,22 @@ final class ChainRenderer implements RendererInterface
 
     public function stream(NodeEngine $engine, Node $node, $out): void
     {
+        $lastRendererNotFoundException = null;
+
         foreach ($this->renderers as $renderer) {
             try {
                 $renderer->stream($engine, $node, $out);
 
                 return;
-            } catch (RendererNotFoundException) {
+            } catch (RendererNotFoundException $e) {
+                $lastRendererNotFoundException = $e;
             }
         }
 
-        throw new RendererNotFoundException('Renderer '.$node->getServiceKey().' not found.');
+        if (null !== $lastRendererNotFoundException) {
+            throw $lastRendererNotFoundException;
+        } else {
+            throw new RendererNotFoundException('Renderer '.$node->getServiceKey().' not found.');
+        }
     }
 }
