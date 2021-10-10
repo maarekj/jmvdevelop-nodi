@@ -1,6 +1,5 @@
 <?php
 
-use JmvDevelop\Nodi\ChainRenderer;
 use JmvDevelop\Nodi\DefaultRenderer;
 use JmvDevelop\Nodi\Node\Node;
 use JmvDevelop\Nodi\NodeEngine;
@@ -14,9 +13,7 @@ function baseHtml(Node $node): Node
 
 function nodeEngine(): NodeEngine
 {
-    return new NodeEngine(renderer: new ChainRenderer([
-        new DefaultRenderer(),
-    ]));
+    return new NodeEngine(renderer: new DefaultRenderer());
 }
 
 
