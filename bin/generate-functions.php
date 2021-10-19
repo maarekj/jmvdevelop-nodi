@@ -65,6 +65,7 @@ $tags = [
     ['name' => 'audio', 'autoClose' => false],
     ['name' => 'blockquote', 'autoClose' => false],
     ['name' => 'body', 'autoClose' => false],
+    ['name' => 'button', 'autoClose' => false],
     ['name' => 'br', 'autoClose' => true],
     ['name' => 'cite', 'autoClose' => false],
     ['name' => 'code', 'autoClose' => false],
