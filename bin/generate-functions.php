@@ -45,6 +45,7 @@ $attrs = [
     'size' => 'size',
     'sizes' => 'sizes',
     'src' => 'src',
+    'srcset' => 'srcset',
     'step' => 'step',
     'style' => 'style',
     'target' => 'target',
